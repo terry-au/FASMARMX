@@ -7,8 +7,12 @@
 //
 
 #import "TNFMainSplitViewController.h"
+//#import "NSTextView+LineNumbers.h"
+#import "FASMARMX-Swift.h"
 
-@interface TNFMainSplitViewController () <NSSplitViewDelegate>
+@class LineNumberRulerView;
+
+@interface TNFMainSplitViewController () <NSSplitViewDelegate, NSTextViewDelegate>
 
 @end
 
@@ -22,6 +26,9 @@
     self.horizontalSplitView.delegate = self;
     
     self.editorTextView.font = [NSFont fontWithName:@"Menlo" size:12];
+    self.editorTextView.delegate = self;
+    [self.editorTextView lnv_setUpLineNumberView];
+//    [self.editorTextView lnv_setUpLineNumberView];
 }
 
 - (void)viewDidAppear{
